@@ -1,5 +1,11 @@
 # Referência histórica de arquitetura — AlEx
 
+> **English:** This is a historical architecture reference. Its Portuguese
+> body and the linked PDF describe an earlier, conceptual design; they are not
+> the current product specification, current deployment instructions, or
+> evidence of approved delivery integrations. An English summary follows the
+> Portuguese reference below.
+
 > Este documento descreve uma arquitetura anterior e não é a especificação
 > vigente do produto nem comprova integrações com plataformas de delivery.
 > Consulte o [resumo público](./README.md) e o
@@ -223,3 +229,58 @@ Endpoints administrativos de saúde e observabilidade devem continuar restritos
 Cada diretório de máquina possui seu próprio guia de instalação e operação. O
 PDF de arquitetura complementa este resumo; o código e os guias operacionais
 devem ser usados para confirmar o comportamento efetivamente disponível.
+
+---
+
+## English — historical architecture summary
+
+This section summarizes the Portuguese reference above. It is provided for
+context only; it does not update or validate the historical implementation
+claims. The current public overview and partner brief take precedence.
+
+### Earlier design
+
+The reference describes a modular service architecture split across three
+logical machines:
+
+1. **Data and search:** PostgreSQL as the relational source of truth,
+   Elasticsearch for search/read projections, Logstash for periodic database
+   synchronization, and Kibana for administration.
+2. **Backend and domain:** a Java/Spring Boot REST API responsible for
+   authentication, authorization, domain rules, persistence, search
+   projections, and access to locally hosted AI models through Ollama.
+3. **Web access:** an Nginx reverse proxy routing API, public-page, and health
+   endpoints to the backend.
+
+The reference lists PostgreSQL 16, Elasticsearch 8.15, Spring Boot 3.5, Java
+25, Ollama, Docker Compose, and Multipass. These are historical design details,
+not a supported-version guarantee for the current product.
+
+### Capabilities described in the earlier design
+
+The Portuguese reference describes Google-based sign-in, owner-scoped pages,
+RAG and chat, administrative management, and own-delivery settings and orders.
+It also discusses a future multi-provider delivery hub, resilience patterns,
+CrewAI, and read-only MCP tools. Those future items must not be interpreted as
+implemented or approved integrations. In particular, the current public status
+is that official adapters for iFood, Uber, 99, and other providers are not
+implemented or approved.
+
+The reference's conceptual integration PDF contains stronger implementation
+claims than the current project evidence supports. Treat it as an archived
+concept document only—not as current API documentation, a partner commitment,
+or proof of production readiness.
+
+### Earlier test-environment notes
+
+The original text describes Docker Compose and Multipass test environments,
+separate component startup, Ollama models, and basic health checks. Its
+directory names and commands refer to an earlier repository layout. Do not run
+those commands against the current project without first checking the current
+source repository and its installation guides.
+
+### Security reminder
+
+Do not publish credentials or production data. The historical document is not
+a production deployment guide. Review the current product status and obtain
+partner authorization before building or enabling any external connection.
