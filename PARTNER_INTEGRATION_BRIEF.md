@@ -31,10 +31,13 @@ recursos, políticas, credenciais e estados de pedido.
 | Interface web responsiva, preparação PWA e shells desktop/mobile | Implementada no frontend; requer validação nos dispositivos e ambientes finais. |
 | Cadastro de negócio e fluxo de aprovação administrativa | Implementados no frontend e conectados às APIs disponíveis no projeto. |
 | Gestão interna de pedidos e entrega própria | Fluxos internos presentes; não representam pedidos originados em marketplaces. |
-| Onboarding e configuração para delivery | Estrutura de cadastro/configuração presente; não executa integração oficial. |
-| Proteção de configuração sensível | Há mecanismos de configuração cifrada; operação, rotação e recuperação ainda precisam de validação de produção. |
+| iFood Distributed OAuth | Fluxo de autorização de teste e consulta de lojas permitidas implementados; dependem das permissões e da loja de teste autorizada pelo iFood. Não há indicação de homologação comercial. |
+| Catálogo iFood | Consulta e publicação explícita do catálogo interno implementadas para a loja autorizada. Não sincroniza pedidos, disponibilidade em tempo real nem exclusões remotas. |
+| Onboarding e configuração para outros provedores | Estrutura de cadastro/configuração presente; adaptadores comerciais não implementados. |
+| Proteção de configuração sensível | Credenciais iFood e dados de integração são cifrados no Back-Node; operação, rotação e recuperação ainda precisam de validação de produção. |
 | Registro de agentes e vínculo a escopo de negócio | Base de gestão presente; não significa provisionamento ou execução automática de workflows n8n externos. |
-| Adaptadores oficiais para provedores de delivery | **Não implementados nem homologados.** |
+| Integração de pedidos, status, cancelamentos e entregadores com marketplaces | **Não implementada.** |
+| Homologação para operação comercial | **Não declarada nem concluída.** |
 
 O projeto ainda não está declarado pronto para produção. Consulte o código e
 as notas técnicas atuais antes de depender de qualquer capacidade em um
@@ -119,10 +122,13 @@ credentials, and order states.
 | Responsive web interface, PWA groundwork, and desktop/mobile shells | Implemented in the frontend; validation on target devices and environments is still required. |
 | Business registration and administrator approval flow | Implemented in the frontend and connected to APIs available in the project. |
 | Internal order management and own-delivery workflow | Internal workflows are present; they do not represent marketplace-originated orders. |
-| Delivery onboarding and configuration | Registration/configuration groundwork is present; it does not perform an official integration. |
-| Protection of sensitive configuration | Encryption mechanisms exist; production operation, rotation, and recovery still need validation. |
+| iFood Distributed OAuth | Test authorization flow and lookup of permitted merchants are implemented; they depend on iFood-granted permissions and the authorized test store. No commercial approval is implied. |
+| iFood catalog | Read and explicit publication of the internal catalog are implemented for the authorized merchant. This does not synchronize orders, real-time availability, or remote deletions. |
+| Onboarding and configuration for other providers | Registration/configuration groundwork exists; commercial adapters are not implemented. |
+| Protection of sensitive configuration | iFood credentials and integration data are encrypted in the Back-Node; production operation, rotation, and recovery still need validation. |
 | Agent records linked to a business scope | Management groundwork exists; this does not provision or automatically run external n8n workflows. |
-| Official delivery-provider adapters | **Not implemented or approved.** |
+| Marketplace order, status, cancellation, and courier integration | **Not implemented.** |
+| Approval for commercial operation | **Not claimed or completed.** |
 
 The project is not declared production-ready. Review the current code and
 technical notes before relying on any capability in a commercial environment.

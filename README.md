@@ -15,13 +15,14 @@ para avaliar integrações oficiais, seguras e homologadas. O objetivo é reduzi
 fricção operacional para negócios, sem substituir os canais, regras comerciais
 ou controles de cada parceiro.
 
-**Estado atual:** o sistema inclui fluxo interno de pedidos, interface de
-cadastro/configuração de plataformas e preparação de credenciais. Os
-adaptadores oficiais para iFood, Uber, 99 e outros provedores ainda não estão
-implementados nem homologados. A interface de configuração não significa que
-exista sincronização de catálogo, pedidos, status, cancelamentos ou entregadores
-com esses serviços. A menção às marcas não implica parceria, endosso ou
-autorização.
+**Estado atual:** além do fluxo interno de pedidos e da configuração de
+plataformas, o código do AlEx inclui um fluxo de teste do iFood Distributed
+OAuth, consulta de lojas/catálogos autorizados e publicação explícita do
+catálogo interno na loja autorizada. Isso não significa homologação, parceria
+ou autorização para operação comercial. Não há sincronização geral de pedidos,
+status, cancelamentos ou entregadores; os adaptadores de Uber, 99 e outros
+provedores não estão implementados. A menção às marcas não implica parceria,
+endosso ou autorização.
 
 Leia o [brief de integração para parceiros](./PARTNER_INTEGRATION_BRIEF.md)
 para conhecer a proposta, os limites atuais e os próximos passos.
@@ -36,9 +37,9 @@ para conhecer a proposta, os limites atuais e os próximos passos.
 - **Apoio por IA:** agentes podem apoiar descoberta, consulta e organização de
   informações. Ações críticas continuam sujeitas a regras determinísticas e
   revisão humana.
-- **Entrega:** existe um fluxo de entrega própria e uma base de onboarding para
-  futuras conexões oficiais. Cada função externa depende da implementação e
-  homologação do adaptador correspondente.
+- **Entrega:** existe um fluxo interno de entrega própria e um adaptador iFood
+  limitado a teste/autorização da loja e publicação explícita de catálogo.
+  Outras operações e provedores dependem de implementação e homologação.
 - **Implantação flexível:** componentes podem ser executados em conjunto ou
   separados. Exemplos de desenvolvimento não são configurações prontas para
   produção.
@@ -63,6 +64,8 @@ confidenciais.
 
 - [Brief de integração para parceiros](./PARTNER_INTEGRATION_BRIEF.md) —
   proposta de colaboração e estado factual das capacidades.
+- [Guia técnico público](./GUIA_TECNICO.md) — arquitetura, implantação,
+  segurança, Ollama e limites atuais das integrações.
 - [Referência histórica de arquitetura](./ARQUITETURA_REFERENCIA_HISTORICA.md) —
   material anterior; não é a especificação vigente.
 - O [PDF de arquitetura](./Modelo%20de%20Arquitetura%20do%20Sistema%20e%20Guia%20de%20Integra%C3%A7%C3%A3o.pdf)
@@ -87,13 +90,14 @@ ecosystem providers to explore official, secure, and approved integrations. The
 goal is to reduce operational friction for businesses without replacing each
 partner's channels, commercial rules, or controls.
 
-**Current status:** the system includes an internal order workflow, a platform
-registration/configuration interface, and credential-configuration
-preparation. Official adapters for iFood, Uber, 99, and other providers have
-not been implemented or approved. The configuration interface does not mean
-that catalog, order, status, cancellation, or courier data is synchronized with
-those services. Mentioning these brands does not imply a partnership,
-endorsement, or authorization.
+**Current status:** in addition to internal order workflows and platform
+configuration, the AlEx codebase includes an iFood Distributed OAuth test
+flow, lookup of authorized merchants/catalogs, and explicit publication of the
+internal catalog to the authorized merchant. This does not imply approval,
+partnership, or authorization for commercial operation. General order, status,
+cancellation, or courier synchronization is not available; adapters for Uber,
+99, and other providers are not implemented. Mentioning these brands does not
+imply a partnership, endorsement, or authorization.
 
 Read the [delivery partner integration brief](./PARTNER_INTEGRATION_BRIEF.md)
 for the proposal, current limitations, and suggested next steps.
@@ -108,9 +112,9 @@ for the proposal, current limitations, and suggested next steps.
 - **AI assistance:** agents can support discovery, information retrieval, and
   organization. Critical actions remain subject to deterministic rules and
   human review.
-- **Delivery:** an own-delivery workflow and onboarding groundwork for future
-  official connections are present. Each external capability depends on its
-  adapter being implemented and approved.
+- **Delivery:** an internal own-delivery workflow and an iFood adapter limited
+  to test authorization and explicit catalog publication are present. Other
+  operations and providers depend on implementation and approval.
 - **Flexible deployment:** components can run together or separately.
   Development examples are not production-ready configurations.
 
@@ -134,6 +138,8 @@ information.
 
 - [Delivery partner integration brief](./PARTNER_INTEGRATION_BRIEF.md) —
   collaboration proposal and factual capability status.
+- [Public technical guide](./GUIA_TECNICO.md) — architecture, deployment,
+  security, Ollama, and current integration limits.
 - [Historical architecture reference](./ARQUITETURA_REFERENCIA_HISTORICA.md) —
   previous material; it is not the current specification.
 - The [architecture PDF](./Modelo%20de%20Arquitetura%20do%20Sistema%20e%20Guia%20de%20Integra%C3%A7%C3%A3o.pdf)
