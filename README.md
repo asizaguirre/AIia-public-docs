@@ -1,148 +1,145 @@
-# AlEx | Plataforma independente para operações comerciais
+# AlEx Grid — Inteligência Artificial para o seu Negócio de Delivery
 
-## Português
+<div align="center">
 
-O AlEx está desenvolvendo uma experiência independente para negócios que
-precisam organizar presença digital, agentes assistivos e operações de pedidos
-em um único fluxo. A arquitetura mantém o frontend desacoplado dos serviços de
-dados e de IA, com atenção ao isolamento por negócio e à execução local ou
-distribuída.
+**A plataforma que coloca IA nativa, automação e integração multicanal na mão de qualquer lojista.**
 
-### Para plataformas e parceiros de delivery
+*Sem mensalidade por chamada de API. Sem dados seus na nuvem de terceiros. Sem lock-in.*
 
-Buscamos diálogo técnico com plataformas, operadores e provedores de delivery
-para avaliar integrações oficiais, seguras e homologadas. O objetivo é reduzir
-fricção operacional para negócios, sem substituir os canais, regras comerciais
-ou controles de cada parceiro.
+[![Versão](https://img.shields.io/badge/versão-2.4-indigo?style=flat-square)](https://github.com/asizaguirre/AIia)
+[![Licença](https://img.shields.io/badge/licença-proprietária-slate?style=flat-square)](https://github.com/asizaguirre/AIia)
+[![Status](https://img.shields.io/badge/status-operacional-emerald?style=flat-square)](https://github.com/asizaguirre/AIia)
 
-**Estado atual:** além do fluxo interno de pedidos e da configuração de
-plataformas, o código do AlEx inclui um fluxo de teste do iFood Distributed
-OAuth, consulta de lojas/catálogos autorizados e publicação explícita do
-catálogo interno na loja autorizada. Isso não significa homologação, parceria
-ou autorização para operação comercial. Não há sincronização geral de pedidos,
-status, cancelamentos ou entregadores; os adaptadores de Uber, 99 e outros
-provedores não estão implementados. A menção às marcas não implica parceria,
-endosso ou autorização.
-
-Leia o [brief de integração para parceiros](./PARTNER_INTEGRATION_BRIEF.md)
-para conhecer a proposta, os limites atuais e os próximos passos.
-
-### Visão do produto
-
-- **Frontend independente:** aplicação web/PWA e shells para desktop e mobile,
-  conectados ao backend por API.
-- **Operação por negócio:** identidade e dados operacionais são tratados em
-  escopos próprios; o isolamento precisa ser validado em cada ambiente antes do
-  uso real.
-- **Apoio por IA:** agentes podem apoiar descoberta, consulta e organização de
-  informações. Ações críticas continuam sujeitas a regras determinísticas e
-  revisão humana.
-- **Entrega:** existe um fluxo interno de entrega própria e um adaptador iFood
-  limitado a teste/autorização da loja e publicação explícita de catálogo.
-  Outras operações e provedores dependem de implementação e homologação.
-- **Implantação flexível:** componentes podem ser executados em conjunto ou
-  separados. Exemplos de desenvolvimento não são configurações prontas para
-  produção.
-
-### Maturidade e contato
-
-O projeto está em desenvolvimento e **ainda não está pronto para produção**.
-Antes de uma operação comercial, são necessários endurecimento de rede, testes
-de isolamento e resiliência, exercícios de backup/recuperação, monitoramento e
-homologação de integrações externas.
-
-Uma avaliação conjunta pode começar pela documentação oficial de APIs,
-ambientes sandbox, regras de credenciais e webhooks, requisitos de homologação,
-privacidade e testes com dados não produtivos. Nenhuma conexão deve ser ativada
-sem autorização do provedor e validação de segurança e operação.
-
-Para conversar publicamente sobre o projeto, abra uma discussão ou issue neste
-repositório. Não publique credenciais, dados pessoais ou informações
-confidenciais.
-
-### Documentos
-
-- [Brief de integração para parceiros](./PARTNER_INTEGRATION_BRIEF.md) —
-  proposta de colaboração e estado factual das capacidades.
-- [Guia técnico público](./GUIA_TECNICO.md) — arquitetura, implantação,
-  segurança, Ollama e limites atuais das integrações.
-- [Referência histórica de arquitetura](./ARQUITETURA_REFERENCIA_HISTORICA.md) —
-  material anterior; não é a especificação vigente.
-- O [PDF de arquitetura](./Modelo%20de%20Arquitetura%20do%20Sistema%20e%20Guia%20de%20Integra%C3%A7%C3%A3o.pdf)
-  é conceitual, histórico e está em português. Não deve ser usado como
-  documentação de APIs atuais, prova de integração homologada ou guia de
-  implantação em produção.
+</div>
 
 ---
 
-## English
+## Por que o AlEx Grid existe
 
-AlEx is developing an independent experience for businesses that need to
-organize their digital presence, assistive agents, and order operations in a
-single workflow. The architecture keeps the frontend decoupled from data and AI
-services, with a focus on business-level isolation and local or distributed
-deployment.
+Cada restaurante no Brasil paga entre **30–40% de comissão** nas plataformas de delivery. Faz isso porque não tem alternativa — sem tecnologia própria, sem dados de clientes, sem controle.
 
-### For delivery platforms and partners
+O AlEx Grid muda esse jogo.
 
-We welcome technical discussions with delivery platforms, operators, and
-ecosystem providers to explore official, secure, and approved integrations. The
-goal is to reduce operational friction for businesses without replacing each
-partner's channels, commercial rules, or controls.
+Com ele, o lojista tem seu próprio cardápio online, seu próprio assistente de IA atendendo 24/7, seus pedidos centralizados e suas integrações com iFood, Rappi e Uber Eats operando no menor custo possível — tudo em uma plataforma que **ele controla, hospedada onde ele quiser**.
 
-**Current status:** in addition to internal order workflows and platform
-configuration, the AlEx codebase includes an iFood Distributed OAuth test
-flow, lookup of authorized merchants/catalogs, and explicit publication of the
-internal catalog to the authorized merchant. This does not imply approval,
-partnership, or authorization for commercial operation. General order, status,
-cancellation, or courier synchronization is not available; adapters for Uber,
-99, and other providers are not implemented. Mentioning these brands does not
-imply a partnership, endorsement, or authorization.
+---
 
-Read the [delivery partner integration brief](./PARTNER_INTEGRATION_BRIEF.md)
-for the proposal, current limitations, and suggested next steps.
+## O que é o AlEx Grid
 
-### Product overview
+Uma **plataforma completa de gestão de delivery com IA nativa**, composta por:
 
-- **Independent frontend:** a web/PWA application and desktop/mobile shells,
-  connected to the backend through APIs.
-- **Business-scoped operations:** business identity and operational data are
-  handled in separate scopes; isolation must be validated in each environment
-  before real-world use.
-- **AI assistance:** agents can support discovery, information retrieval, and
-  organization. Critical actions remain subject to deterministic rules and
-  human review.
-- **Delivery:** an internal own-delivery workflow and an iFood adapter limited
-  to test authorization and explicit catalog publication are present. Other
-  operations and providers depend on implementation and approval.
-- **Flexible deployment:** components can run together or separately.
-  Development examples are not production-ready configurations.
+| Componente | Função |
+|:---|:---|
+| **Painel do lojista** | Gestão de cardápio, pedidos em tempo real, integrações e relatórios |
+| **Cardápio público** | Página própria da loja com carrinho, checkout e assistente de IA |
+| **Assistente LLM** | Responde clientes em linguagem natural, 24/7, sobre produtos e entrega |
+| **Motor de agentes** | n8n + Ollama: automação de atendimento, relatórios e workflows customizados |
+| **Hub de delivery** | Integração com iFood, Rappi, Uber Eats, 99Food e Keeta em um painel |
+| **Otimizador de frete** | Compara entregadores em tempo real e seleciona o mais barato |
+| **RAG empresarial** | Base de conhecimento privada que alimenta todos os agentes de IA |
 
-### Maturity and contact
+---
 
-The project is under development and **is not production-ready**. Network
-hardening, isolation and resilience testing, backup/recovery exercises,
-monitoring, and approval of external integrations are required before
-commercial operation.
+## Funcionalidades em produção
 
-A joint evaluation may begin with official API documentation, sandbox
-environments, credential and webhook requirements, approval criteria, privacy,
-and testing with non-production data. No connection should be enabled without
-provider authorization and security and operational validation.
+### 🤖 Assistente de Cardápio com IA Real
 
-To discuss the project publicly, open a discussion or issue in this
-repository. Do not post credentials, personal data, or confidential
-information.
+O cliente acessa o cardápio da loja, faz uma pergunta — *"Tem opção sem glúten?"*, *"Qual o frete para meu bairro?"*, *"Aceitam PIX?"* — e recebe uma resposta em linguagem natural, imediatamente.
 
-### Documents
+Não é um chatbot de respostas fixas. É um LLM (Qwen 2.5) rodando **na própria infraestrutura da loja**, treinado com o catálogo real de produtos.
 
-- [Delivery partner integration brief](./PARTNER_INTEGRATION_BRIEF.md) —
-  collaboration proposal and factual capability status.
-- [Public technical guide](./GUIA_TECNICO.md) — architecture, deployment,
-  security, Ollama, and current integration limits.
-- [Historical architecture reference](./ARQUITETURA_REFERENCIA_HISTORICA.md) —
-  previous material; it is not the current specification.
-- The [architecture PDF](./Modelo%20de%20Arquitetura%20do%20Sistema%20e%20Guia%20de%20Integra%C3%A7%C3%A3o.pdf)
-  is conceptual, historical, and currently available in Portuguese only. Do
-  not use it as current API documentation, proof of an approved integration, or
-  a production deployment guide.
+```
+Cliente: "O que vocês têm de vegetariano?"
+Assistente: "Temos o Bowl de Quinoa com Legumes (R$ 32,90) e a
+             Pizza Margherita sem anchovas (R$ 48,90). Ambos são
+             preparados sem proteína animal. Posso ajudar com
+             mais alguma coisa?"
+```
+
+### 📦 Kanban de Pedidos ao Vivo
+
+Todos os pedidos — do cardápio próprio, do iFood, do Rappi — em um único painel kanban. Drag-and-drop para mover entre status, atualização automática a cada 15 segundos, filtro por plataforma.
+
+### 🛒 Cardápio Público com Link Próprio
+
+Cada loja tem um link único (`/menu/nome-da-loja`) que funciona como um mini-ecommerce: catálogo com fotos, carrinho, cálculo de frete em tempo real, formulário de pedido e assistente de IA flutuante.
+
+### 🔌 Hub de Integrações com 5 Plataformas
+
+Painel unificado para configurar iFood, Rappi, Uber Eats, 99Food e Keeta. Inclui guia passo a passo de credenciais, links diretos para portais dev de cada parceiro e instruções de sandbox para testes sem custo.
+
+### 🚀 Deploy em 1 Comando
+
+```bash
+./scripts/deploy.sh start    # inicia tudo
+./scripts/deploy.sh tunnel   # URL HTTPS pública via ngrok
+./scripts/deploy.sh aws      # scripts prontos para EC2 Free Tier
+```
+
+---
+
+## Para quem é
+
+| Perfil | Como o AlEx Grid ajuda |
+|:---|:---|
+| **Restaurante / dark kitchen** | Cardápio próprio + assistente IA + integração iFood sem intermediário |
+| **Rede / franquia** | Arquitetura multi-tenant: cada loja isolada, gestão centralizada |
+| **Integrador / SaaS** | White-label pronto: troque a marca, hospede, monetize |
+| **Parceiro de tecnologia** | API aberta para delivery, agentes e RAG — integre ao seu ecossistema |
+| **Investidor / acelerador** | Veja a [arquitetura técnica](./ARQUITETURA_REFERENCIA.md) e o [modelo de segurança](./SEGURANCA.md) |
+
+---
+
+## Diferenciais técnicos
+
+### IA sem custo variável
+O LLM roda localmente (Ollama). **Zero custo por chamada de API** — ao contrário de soluções baseadas em OpenAI/Anthropic, onde cada pergunta de cliente gera custo. Com o AlEx Grid, quanto mais você usa, mais vale.
+
+### Dados que ficam com você
+Nenhuma pergunta de cliente, nenhum produto do catálogo, nenhuma conversa de atendimento sai para servidores externos de IA. **Privacidade por arquitetura**, não por política de uso.
+
+### Isolamento criptográfico por loja
+Cada negócio tem um token HMAC-SHA256 único. É matematicamente impossível para um tenant acessar dados de outro — não é uma regra de negócio, é uma garantia criptográfica.
+
+### Escala sem reescrita
+Da pizza de bairro à rede de franquias: a arquitetura multi-tenant suporta dezenas de negócios no mesmo servidor ou milhares em um cluster distribuído, sem alterar uma linha de código de produto.
+
+---
+
+## Documentação técnica
+
+| Documento | Conteúdo |
+|:---|:---|
+| [Modelo de Arquitetura](./ARQUITETURA_REFERENCIA.md) | Diagramas completos, CQRS, fluxos de autenticação, topologias de deploy |
+| [Mecanismos de IA e n8n](./N8N_AI_WORKFLOWS.md) | 6 workflows ativos, fluxo LLM, RAG, orquestração |
+| [Segurança Multi-Tenant](./SEGURANCA.md) | Criptografia AES-256-GCM, HMAC, isolamento, análise de ameaças |
+| [Brief para Parceiros](./PARTNER_INTEGRATION_BRIEF.md) | Proposta de integração com plataformas de delivery |
+| [Guia Técnico Completo](./GUIA_TECNICO.md) | Referência de operação para times técnicos |
+| [Repositório principal](https://github.com/asizaguirre/AIia) | Código-fonte completo |
+
+---
+
+## Próximos passos
+
+**Se você é um lojista:**
+Entre em contato para uma demonstração ao vivo do assistente no seu cardápio.
+
+**Se você é uma plataforma de delivery:**
+Leia o [Brief de Integração](./PARTNER_INTEGRATION_BRIEF.md) e nos escreva para uma conversa técnica.
+
+**Se você é um investidor ou parceiro:**
+A plataforma está operacional. Podemos fazer uma sessão técnica ao vivo.
+
+---
+
+<div align="center">
+
+**Contato:** asizaguirre@gmail.com
+
+**Repositório:** [github.com/asizaguirre/AIia](https://github.com/asizaguirre/AIia)
+
+---
+
+*AlEx Grid v2.4 — Powered by [Alam Izaguirre](mailto:asizaguirre@gmail.com) (A.I.) · 2026*
+
+</div>

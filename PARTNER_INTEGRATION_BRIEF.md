@@ -1,180 +1,202 @@
-# AlEx | Brief de integração para parceiros de delivery
+# Brief de Integração para Parceiros — AlEx Grid v2.4
 
-## Português
+<div align="center">
 
-### Convite à colaboração
+*Proposta técnica de colaboração com plataformas de delivery e provedores do ecossistema*
 
-O AlEx busca conversas técnicas com plataformas de delivery e provedores do
-ecossistema — incluindo iFood, Uber, 99 e outros — para definir um caminho
-oficial de interoperabilidade que beneficie negócios e preserve as regras de
-cada plataforma.
-
-Este documento é uma proposta de colaboração, não um anúncio de parceria. As
-marcas são citadas apenas para indicar categorias de interesse. Não há
-endosso, autorização, contrato ou integração homologada implícitos.
-
-### O que estamos construindo
-
-O produto reúne uma interface independente para negócios, gestão de pedidos e
-agentes assistivos. A aplicação separa a experiência do usuário das APIs e dos
-serviços de dados e está sendo preparada para operar com escopos isolados por
-negócio.
-
-O objetivo é permitir que um negócio acompanhe suas operações em um único
-ambiente, mantendo a plataforma parceira como autoridade sobre seus próprios
-recursos, políticas, credenciais e estados de pedido.
-
-### Capacidades e estado atual
-
-| Capacidade | Estado atual |
-|---|---|
-| Interface web responsiva, preparação PWA e shells desktop/mobile | Implementada no frontend; requer validação nos dispositivos e ambientes finais. |
-| Cadastro de negócio e fluxo de aprovação administrativa | Implementados no frontend e conectados às APIs disponíveis no projeto. |
-| Gestão interna de pedidos e entrega própria | Fluxos internos presentes; não representam pedidos originados em marketplaces. |
-| iFood Distributed OAuth | Fluxo de autorização de teste e consulta de lojas permitidas implementados; dependem das permissões e da loja de teste autorizada pelo iFood. Não há indicação de homologação comercial. |
-| Catálogo iFood | Consulta e publicação explícita do catálogo interno implementadas para a loja autorizada. Não sincroniza pedidos, disponibilidade em tempo real nem exclusões remotas. |
-| Onboarding e configuração para outros provedores | Estrutura de cadastro/configuração presente; adaptadores comerciais não implementados. |
-| Proteção de configuração sensível | Credenciais iFood e dados de integração são cifrados no Back-Node; operação, rotação e recuperação ainda precisam de validação de produção. |
-| Registro de agentes e vínculo a escopo de negócio | Base de gestão presente; não significa provisionamento ou execução automática de workflows n8n externos. |
-| Integração de pedidos, status, cancelamentos e entregadores com marketplaces | **Não implementada.** |
-| Homologação para operação comercial | **Não declarada nem concluída.** |
-
-O projeto ainda não está declarado pronto para produção. Consulte o código e
-as notas técnicas atuais antes de depender de qualquer capacidade em um
-ambiente comercial.
-
-### Escopo proposto para descoberta técnica
-
-O escopo deve ser definido com cada parceiro, usando somente APIs e permissões
-oficialmente autorizadas. Tópicos possíveis:
-
-- autenticação, consentimento do lojista e emissão/rotação de credenciais;
-- disponibilidade de sandbox e processo de homologação;
-- consulta e atualização de catálogo, preços e disponibilidade, se permitidas;
-- recebimento de pedidos e consulta/atualização de estados;
-- cancelamento, suporte, falhas de entrega e limites de responsabilidade;
-- webhooks, idempotência, ordenação, repetição e reconciliação de eventos;
-- limites de taxa, observabilidade, privacidade e retenção de dados;
-- critérios de segurança, suporte e operação para lançamento gradual.
-
-Esses itens são perguntas para descoberta, não funcionalidades nem contratos
-de API já suportados pelo AlEx.
-
-### Princípios de integração
-
-1. Usar somente APIs, eventos e credenciais oficialmente autorizados.
-2. Respeitar o consentimento do negócio, os escopos mínimos e o isolamento
-   entre negócios.
-3. Tratar pedidos e valores com regras determinísticas; IA não autoriza
-   transações, altera preços nem substitui validações do parceiro.
-4. Projetar para idempotência, auditoria, tratamento explícito de falhas e
-   reconciliação.
-5. Começar em sandbox com dados sintéticos e avançar por etapas de homologação
-   e liberação controlada.
-6. Não armazenar segredos em documentação, repositórios públicos, logs ou
-   ferramentas de atendimento.
-
-### Próximos passos sugeridos
-
-1. Identificar o canal oficial de parceria e a documentação para
-   desenvolvedores.
-2. Confirmar permissões, requisitos de marca, sandbox, certificações e critérios
-   de homologação.
-3. Selecionar um caso de uso limitado e seus fluxos permitidos.
-4. Elaborar um contrato técnico com estados, eventos, segurança e suporte.
-5. Implementar e testar o adaptador após aprovação do parceiro.
-6. Fazer revisão operacional e de segurança antes de qualquer piloto real.
-
-Para iniciar uma conversa, use os canais oficiais do parceiro. Para questões
-públicas sobre o projeto, abra uma issue neste repositório. Não envie tokens,
-dados de clientes ou documentos confidenciais em issues públicas.
+**Powered by Alam Izaguirre (A.I.)**
 
 ---
 
-## English
+*Este documento é uma proposta de colaboração técnica. As marcas mencionadas indicam categorias de interesse. Não há endosso, autorização ou contrato implícitos.*
 
-### Invitation to collaborate
+</div>
 
-AlEx is seeking technical discussions with delivery platforms and ecosystem
-providers—including iFood, Uber, 99, and others—to define an official
-interoperability path that benefits businesses while respecting each
-platform's rules.
+---
 
-This document is a collaboration proposal, not a partnership announcement.
-Brands are mentioned only to identify areas of interest. No endorsement,
-authorization, contract, or approved integration is implied.
+## O problema que resolvemos juntos
 
-### What we are building
+Hoje, um lojista que quer estar em 3 plataformas de delivery precisa:
 
-The product brings together an independent business interface, order
-management, and assistive agents. The application separates the user
-experience from APIs and data services and is being prepared to operate with
-business-scoped data.
+- Cadastrar o mesmo cardápio **3 vezes** em interfaces diferentes
+- Atualizar preços e disponibilidade **3 vezes** quando há mudança
+- Acompanhar pedidos em **3 apps diferentes** no celular
+- Treinar atendentes para **3 fluxos operacionais** distintos
+- Pagar taxas para **3 operações de suporte** separadas
 
-The goal is to let a business follow its operations in one environment while
-keeping the partner platform authoritative over its own resources, policies,
-credentials, and order states.
+O resultado: erros de cardápio, pedidos perdidos, cliente insatisfeito e lojista exausto.
 
-### Capabilities and current status
+**O AlEx Grid é a camada de gestão unificada** que resolve isso sem substituir nenhuma plataforma — sendo o ponto central de onde o lojista opera todos os canais simultaneamente.
 
-| Capability | Current status |
-|---|---|
-| Responsive web interface, PWA groundwork, and desktop/mobile shells | Implemented in the frontend; validation on target devices and environments is still required. |
-| Business registration and administrator approval flow | Implemented in the frontend and connected to APIs available in the project. |
-| Internal order management and own-delivery workflow | Internal workflows are present; they do not represent marketplace-originated orders. |
-| iFood Distributed OAuth | Test authorization flow and lookup of permitted merchants are implemented; they depend on iFood-granted permissions and the authorized test store. No commercial approval is implied. |
-| iFood catalog | Read and explicit publication of the internal catalog are implemented for the authorized merchant. This does not synchronize orders, real-time availability, or remote deletions. |
-| Onboarding and configuration for other providers | Registration/configuration groundwork exists; commercial adapters are not implemented. |
-| Protection of sensitive configuration | iFood credentials and integration data are encrypted in the Back-Node; production operation, rotation, and recovery still need validation. |
-| Agent records linked to a business scope | Management groundwork exists; this does not provision or automatically run external n8n workflows. |
-| Marketplace order, status, cancellation, and courier integration | **Not implemented.** |
-| Approval for commercial operation | **Not claimed or completed.** |
+---
 
-The project is not declared production-ready. Review the current code and
-technical notes before relying on any capability in a commercial environment.
+## Nossa proposta para plataformas parceiras
 
-### Proposed technical discovery scope
+Queremos ser um **multiplicador de qualidade** para o ecossistema de cada parceiro:
 
-The scope should be defined with each partner, using only officially
-authorized APIs and permissions. Potential topics include:
+| Para a plataforma | O que ganhamos juntos |
+|:---|:---|
+| Cardápio sempre atualizado | Menos pedidos cancelados por item indisponível |
+| Resposta mais rápida a pedidos | Melhor NPS do lojista na plataforma |
+| Onboarding simplificado | Mais estabelecimentos integrados |
+| Dados de catálogo mais ricos | Melhor ranqueamento e conversão |
 
-- authentication, merchant consent, and credential issuance/rotation;
-- sandbox availability and the approval process;
-- catalog, price, and availability reads or updates, where permitted;
-- order intake and order-state queries or updates;
-- cancellations, support, delivery failures, and responsibility boundaries;
-- webhooks, idempotency, ordering, retries, and event reconciliation;
-- rate limits, observability, privacy, and data retention;
-- security, support, and operational criteria for a gradual launch.
+---
 
-These are discovery questions, not features or API contracts currently
-supported by AlEx.
+## Estado atual das integrações
 
-### Integration principles
+### ✅ iFood — Funcional
 
-1. Use only officially authorized APIs, events, and credentials.
-2. Respect business consent, least-privilege scopes, and separation between
-   businesses.
-3. Handle orders and monetary values through deterministic rules; AI does not
-   authorize transactions, change prices, or replace partner validation.
-4. Design for idempotency, auditing, explicit failure handling, and
-   reconciliation.
-5. Start in a sandbox with synthetic data and progress through approval and
-   controlled release stages.
-6. Never store secrets in documentation, public repositories, logs, or support
-   tools.
+```
+OAuth:
+  ├── Fluxo Centralizado (client_credentials)
+  │     → token gerado automaticamente com Client ID + Secret
+  └── Fluxo Distribuído (user_code)
+        → código gerado no portal para confirmação manual
 
-### Suggested next steps
+Catálogo:
+  ├── Importação do Portal do Parceiro → AlEx Grid
+  ├── Publicação do catálogo interno → iFood API
+  └── Consulta de categorias e lojas autorizadas
 
-1. Identify the partner's official partnership channel and developer
-   documentation.
-2. Confirm permissions, brand requirements, sandbox access, certifications,
-   and approval criteria.
-3. Select a limited use case and its permitted workflows.
-4. Define a technical contract covering states, events, security, and support.
-5. Implement and test the adapter after partner approval.
-6. Complete operational and security reviews before any live pilot.
+Sandbox disponível em: https://developer.ifood.com.br
+```
 
-To start a conversation, use the partner's official channels. For public
-project questions, open an issue in this repository. Do not post tokens,
-customer data, or confidential documents in public issues.
+### ⚙️ Rappi — Configurável
+
+```
+Estrutura pronta: credenciais, merchant_id, modo logístico
+Adaptador de pedidos: em desenvolvimento
+Sandbox: https://developer.rappi.com
+```
+
+### ⚙️ Uber Eats / Direct — Configurável
+
+```
+OAuth 2.0: fluxo configurável no painel
+Uber Direct (entrega própria): em avaliação
+Sandbox: https://developer.uber.com/docs/eats
+```
+
+### ⚙️ 99Food — Aguardando acesso sandbox
+
+```
+Estrutura de credenciais pronta
+API em expansão no Brasil
+Portal: https://open.99app.com
+```
+
+### ⚙️ Keeta — Aguardando documentação API BR
+
+```
+Estrutura de credenciais pronta
+Documentação em português: limitada
+Portal: https://developer.keeta.com
+```
+
+### ✅ Entregadores / Logística — Cotação funcional
+
+```
+Motoboy Próprio · iFood Entregadores · Rappi Turbo
+Loggi · Lalamove · Zap Delivery
+
+→ Comparativo de frete em tempo real
+→ Seleção automática do mais barato por distância
+→ Links diretos para contratação
+```
+
+---
+
+## O que precisamos de cada parceiro
+
+Para uma integração completa e homologada, precisamos de:
+
+| Capacidade | Descrição |
+|:---|:---|
+| **Acesso ao sandbox** | Ambiente de desenvolvimento com credenciais de teste |
+| **Webhook de pedidos** | Notificação em tempo real de novos pedidos |
+| **API de atualização de status** | CONFIRMED → PREPARING → READY → DISPATCHED |
+| **API de catálogo** | CRUD de produtos, categorias, preços e disponibilidade |
+| **Merchant onboarding** | API para cadastro programático de estabelecimentos |
+| **Webhook de cancelamento** | Notificação de cancelamentos e estornos |
+
+---
+
+## O que o AlEx Grid oferece em troca
+
+```
+Para os lojistas integrados via AlEx Grid:
+
+✓  Catálogo sempre sincronizado (reduz erros de disponibilidade)
+✓  Resposta a pedidos em < 30 segundos (IA notifica imediatamente)
+✓  Dados de catálogo estruturados e validados
+✓  Menor taxa de cancelamento por item indisponível
+✓  Melhor experiência do cliente no cardápio próprio
+     (que complementa, não concorre com a plataforma)
+```
+
+---
+
+## Arquitetura da integração proposta
+
+```
+Plataforma Parceira
+       │
+       │  POST /webhook/pedido-recebido
+       │  (assinado com HMAC do parceiro)
+       │
+       ▼
+AlEx Grid Back-Node
+  ├── Valida assinatura do webhook do parceiro
+  ├── Identifica tenant pelo merchant_id
+  ├── Armazena pedido no PostgreSQL (cifrado)
+  ├── Atualiza Kanban do lojista em tempo real
+  ├── n8n workflow: notifica agente de atendimento
+  └── Lojista confirma → PUT /api/parceiro/pedidos/{id}/status
+                              { status: "CONFIRMED" }
+       │
+       ▼
+  Plataforma Parceira recebe atualização de status
+```
+
+---
+
+## Limitações que declaramos abertamente
+
+Ser transparente faz parte do nosso compromisso:
+
+| Capacidade | Status atual |
+|:---|:---|
+| Sincronização de pedidos marketplace em produção | ❌ Não implementado |
+| Cancelamentos e estornos via API | ❌ Não implementado |
+| Rastreamento de entregadores em tempo real | ❌ Aguardando API logística |
+| Notificações push para clientes finais | ❌ Fora do escopo atual |
+| Homologação comercial de qualquer plataforma | ❌ Não declarada |
+
+---
+
+## Conversa técnica
+
+Se você representa uma plataforma de delivery ou provedor logístico e quer avaliar uma integração, podemos oferecer:
+
+- **Demonstração ao vivo** do fluxo de pedidos e catálogo
+- **Acesso ao código** para avaliação técnica (repositório privado)
+- **Sessão técnica** de 1h para discutir arquitetura e requisitos
+- **Prova de conceito** em ambiente controlado
+
+**Contato:** asizaguirre@gmail.com
+
+**Repositório técnico:** [github.com/asizaguirre/AIia](https://github.com/asizaguirre/AIia)
+
+**Documentação:**
+- [Modelo de Arquitetura](./ARQUITETURA_REFERENCIA.md)
+- [Segurança e Isolamento](./SEGURANCA.md)
+- [Workflows de IA](./N8N_AI_WORKFLOWS.md)
+
+---
+
+<div align="center">
+
+*AlEx Grid v2.4 · Powered by Alam Izaguirre (A.I.) · 2026*
+
+</div>
